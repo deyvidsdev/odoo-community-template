@@ -1,11 +1,11 @@
 version: '2'
 services:
   db:
-    image: postgres:14
+    image: postgres:13
     user: root
     environment:
+      - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
-      - POSTGRES_PASSWORD=odoo15@2021      
       - POSTGRES_DB=postgres
     ports:
       - "{POSTGRES-PORT}:5432"
@@ -13,8 +13,8 @@ services:
     volumes:
         - ./postgresql:/var/lib/postgresql/data
 
-  odoo15:
-    image: odoo:15
+  odoo14:
+    image: odoo:14
     user: root
     depends_on:
       - db
@@ -23,10 +23,11 @@ services:
       - "{LONGPOLLING-PORT}:8072" # live chat
     tty: true
     command: --
+#    command: odoo scaffold /mnt/extra-addons/custom_module
     environment:
       - HOST=db
       - USER=odoo
-      - PASSWORD=odoo15@2021
+      - PASSWORD=odoo
     volumes:
       #- /etc/timezone:/etc/timezone:ro
       #- /etc/localtime:/etc/localtime:ro
