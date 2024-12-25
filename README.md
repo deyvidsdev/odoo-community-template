@@ -1,29 +1,29 @@
 # Quick install
 
-Installing Odoo 15 with one command.
+Installing Odoo 13 with one command.
 
 (Supports multiple Odoo instances on one server)
 
 Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) yourself, then run:
 
 ``` bash
-curl -s https://raw.githubusercontent.com/minhng92/odoo-15-docker-compose/master/run.sh | sudo bash -s odoo-one 10015 20015
+curl -s https://raw.githubusercontent.com/minhng92/odoo-13-docker-compose/master/run.sh | sudo bash -s odoo-one 10013 20013
 ```
 
-to set up first Odoo instance @ `localhost:10015` (default master password: `minhng.info`)
+to set up first Odoo instance @ `localhost:10013` (default master password: `minhng.info`)
 
 and
 
 ``` bash
-curl -s https://raw.githubusercontent.com/minhng92/odoo-15-docker-compose/master/run.sh | sudo bash -s odoo-two 11015 21015
+curl -s https://raw.githubusercontent.com/minhng92/odoo-13-docker-compose/master/run.sh | sudo bash -s odoo-two 11013 21013
 ```
 
-to set up another Odoo instance @ `localhost:11015` (default master password: `minhng.info`)
+to set up another Odoo instance @ `localhost:11013` (default master password: `minhng.info`)
 
 Some arguments:
 * First argument (**odoo-one**): Odoo deploy folder
-* Second argument (**10015**): Odoo port
-* Third argument (**20015**): live chat port
+* Second argument (**10013**): Odoo port
+* Third argument (**20013**): live chat port
 
 If `curl` is not found, install it:
 
@@ -40,11 +40,11 @@ Start the container:
 docker-compose up
 ```
 
-* Then open `localhost:10015` to access Odoo 15.0. If you want to start the server with a different port, change **10015** to another value in **docker-compose.yml**:
+* Then open `localhost:10013` to access Odoo 13.0. If you want to start the server with a different port, change **10013** to another value in **docker-compose.yml**:
 
 ```
 ports:
- - "10015:8069"
+ - "10013:8069"
 ```
 
 Run Odoo container in detached mode (be able to close terminal without stopping Odoo):
@@ -56,7 +56,7 @@ docker-compose up -d
 **If you get the permission issue**, change the folder permission to make sure that the container is able to access the directory:
 
 ``` sh
-$ git clone https://github.com/minhng92/odoo-15-docker-compose
+$ git clone https://github.com/minhng92/odoo-13-docker-compose
 $ sudo chmod -R 777 addons
 $ sudo chmod -R 777 etc
 $ mkdir -p postgresql
@@ -102,7 +102,7 @@ docker-compose down
 
 # Live chat
 
-In [docker-compose.yml#L21](docker-compose.yml#L21), we exposed port **20015** for live-chat on host.
+In [docker-compose.yml#L21](docker-compose.yml#L21), we exposed port **20013** for live-chat on host.
 
 Configuring **nginx** to activate live chat feature (in production):
 
@@ -111,7 +111,7 @@ Configuring **nginx** to activate live chat feature (in production):
 server {
     #...
     location /longpolling/ {
-        proxy_pass http://0.0.0.0:20015/longpolling/;
+        proxy_pass http://0.0.0.0:20013/longpolling/;
     }
     #...
 }
@@ -120,15 +120,15 @@ server {
 
 # docker-compose.yml
 
-* odoo:15.0
-* postgres:14
+* odoo:13.0
+* postgres:11
 
-# Odoo 15 screenshots
+# Odoo 13 screenshots
 
-<img src="screenshots/odoo-15-welcome-screenshot.png" width="50%">
+![odoo-13-welcome-docker](screenshots/odoo-13-welcome-screenshot.png)
 
-<img src="screenshots/odoo-15-apps-screenshot.png" width="100%">
+![odoo-13-apps-docker](screenshots/odoo-13-apps-screenshot.png)
 
-<img src="screenshots/odoo-15-sales-screen.png" width="100%">
+![odoo-13-sales](screenshots/odoo-13-sales-screen.png)
 
-<img src="screenshots/odoo-15-product-form.png" width="100%">
+![odoo-13-form](screenshots/odoo-13-sales-form.png)
