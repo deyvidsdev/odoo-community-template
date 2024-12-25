@@ -1,22 +1,22 @@
-# Installing Odoo 18.0 with one command (Supports multiple Odoo instances on one server).
+# Installing Odoo 17.0 with one command (Supports multiple Odoo instances on one server).
 
 ## Quick Installation
 
-Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) yourself, then run the following to set up first Odoo instance @ `localhost:10018` (default master password: `minhng.info`):
+Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) yourself, then run the following to set up first Odoo instance @ `localhost:10017` (default master password: `minhng.info`):
 
 ``` bash
-curl -s https://raw.githubusercontent.com/minhng92/odoo-18-docker-compose/master/run.sh | sudo bash -s odoo-one 10018 20018
+curl -s https://raw.githubusercontent.com/minhng92/odoo-17-docker-compose/master/run.sh | sudo bash -s odoo-one 10017 20017
 ```
-and/or run the following to set up another Odoo instance @ `localhost:11018` (default master password: `minhng.info`):
+and/or run the following to set up another Odoo instance @ `localhost:11017` (default master password: `minhng.info`):
 
 ``` bash
-curl -s https://raw.githubusercontent.com/minhng92/odoo-18-docker-compose/master/run.sh | sudo bash -s odoo-two 11018 21018
+curl -s https://raw.githubusercontent.com/minhng92/odoo-17-docker-compose/master/run.sh | sudo bash -s odoo-two 11017 21017
 ```
 
 Some arguments:
 * First argument (**odoo-one**): Odoo deploy folder
-* Second argument (**10018**): Odoo port
-* Third argument (**20018**): live chat port
+* Second argument (**10017**): Odoo port
+* Third argument (**20017**): live chat port
 
 If `curl` is not found, install it:
 
@@ -26,17 +26,13 @@ $ sudo apt-get install curl
 $ sudo yum install curl
 ```
 
-<p>
-<img src="screenshots/odoo-18-docker-compose.gif" width="100%">
-</p>
-
 ## Usage
 
 Start the container:
 ``` sh
 docker-compose up
 ```
-Then open `localhost:10018` to access Odoo 18.
+Then open `localhost:10017` to access Odoo 17.
 
 - **If you get any permission issues**, change the folder permission to make sure that the container is able to access the directory:
 
@@ -46,11 +42,11 @@ $ sudo chmod -R 777 etc
 $ sudo chmod -R 777 postgresql
 ```
 
-- If you want to start the server with a different port, change **10018** to another value in **docker-compose.yml** inside the parent dir:
+- If you want to start the server with a different port, change **10017** to another value in **docker-compose.yml** inside the parent dir:
 
 ```
 ports:
- - "10018:8069"
+ - "10017:8069"
 ```
 
 - To run Odoo container in detached mode (be able to close terminal without stopping Odoo):
@@ -107,7 +103,7 @@ docker-compose down
 
 ## Live chat
 
-In [docker-compose.yml#L21](docker-compose.yml#L21), we exposed port **20018** for live-chat on host.
+In [docker-compose.yml#L21](docker-compose.yml#L21), we exposed port **20017** for live-chat on host.
 
 Configuring **nginx** to activate live chat feature (in production):
 
@@ -116,7 +112,7 @@ Configuring **nginx** to activate live chat feature (in production):
 server {
     #...
     location /longpolling/ {
-        proxy_pass http://0.0.0.0:20018/longpolling/;
+        proxy_pass http://0.0.0.0:20017/longpolling/;
     }
     #...
 }
@@ -125,23 +121,15 @@ server {
 
 ## docker-compose.yml
 
-* odoo:18
-* postgres:17
+* odoo:17
+* postgres:16
 
-## Odoo 18.0 screenshots after successful installation.
+## Odoo 17.0 screenshots after successful installation.
 
-<p align="center">
-<img src="screenshots/odoo-18-welcome-screenshot.png" width="50%">
-</p>
+<img src="screenshots/odoo-17-welcome-screenshot.png" width="50%">
 
-<p>
-<img src="screenshots/odoo-18-apps-screenshot.png" width="100%">
-</p>
+<img src="screenshots/odoo-17-apps-screenshot.png" width="100%">
 
-<p>
-<img src="screenshots/odoo-18-sales-screen.png" width="100%">
-</p>
+<img src="screenshots/odoo-17-sales-screen.png" width="100%">
 
-<p>
-<img src="screenshots/odoo-18-product-form.png" width="100%">
-</p>
+<img src="screenshots/odoo-17-product-form.png" width="100%">
