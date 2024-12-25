@@ -1,11 +1,11 @@
 version: '2'
 services:
   db:
-    image: postgres:15
+    image: postgres:14
     user: root
     environment:
       - POSTGRES_USER=odoo
-      - POSTGRES_PASSWORD=odoo16@2022      
+      - POSTGRES_PASSWORD=odoo15@2021      
       - POSTGRES_DB=postgres
     ports:
       - "{POSTGRES-PORT}:5432"
@@ -13,8 +13,8 @@ services:
     volumes:
         - ./postgresql:/var/lib/postgresql/data
 
-  odoo16:
-    image: odoo:16
+  odoo15:
+    image: odoo:15
     user: root
     depends_on:
       - db
@@ -26,7 +26,7 @@ services:
     environment:
       - HOST=db
       - USER=odoo
-      - PASSWORD=odoo16@2022
+      - PASSWORD=odoo15@2021
     volumes:
       #- /etc/timezone:/etc/timezone:ro
       #- /etc/localtime:/etc/localtime:ro
