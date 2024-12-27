@@ -1,6 +1,7 @@
 version: '2'
 services:
   db:
+    container_name: "{NAME-POSTGRES}"
     image: postgres:17
     user: root
     environment:
@@ -14,6 +15,7 @@ services:
         - ./postgresql:/var/lib/postgresql/data
 
   odoo18:
+    container_name: "{NAME-ODOO}" 
     image: odoo:18
     user: root
     depends_on:
