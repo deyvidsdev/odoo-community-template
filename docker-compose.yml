@@ -1,6 +1,7 @@
 version: '2'
 services:
   db:
+    container_name: "{NAME-POSTGRES}"
     image: postgres:9.5
     environment:
       - POSTGRES_PASSWORD=odoo
@@ -10,6 +11,7 @@ services:
     restart: always             # run as a service  
 
   odoo11:
+    container_name: "{NAME-ODOO}"
     image: odoo:11.0
     depends_on:
       - db
