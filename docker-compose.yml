@@ -9,7 +9,7 @@ services:
       - POSTGRES_PASSWORD=odoo17@2023
       - POSTGRES_DB=postgres
     restart: always             # run as a service
-    prots:
+    ports:
       - "{POSTGRES-PORT}:5432"
     volumes:
         - ./postgresql:/var/lib/postgresql/data
